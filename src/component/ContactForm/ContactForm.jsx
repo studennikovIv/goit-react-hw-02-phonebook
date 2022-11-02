@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import css from './renderForm.css'
-import PropTypes from 'prop-types'
-import { nanoid } from 'nanoid'
+import PropTypes from 'prop-types';
 
-class AddContact extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
-    id: nanoid(3),
-  }
+  };
 
-  inputChange = (event) => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
-  }
+  inputChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
-  submiteForm = (event) => {
-    event.preventDefault()
-    const { name, number, id } = this.state
+  submiteForm = event => {
+    event.preventDefault();
+    const { name, number } = this.state;
 
-    this.props.addContacts(name, number, id)
-    this.setState({ name: '', number: '', id: '' })
-  }
+    this.props.addContacts(name, number);
+    this.setState({ name: '', number: '' });
+  };
 
   render() {
     return (
@@ -53,10 +51,10 @@ class AddContact extends Component {
         </label>
         <button type="submit">Add contact</button>
       </form>
-    )
+    );
   }
 }
-AddContact.propTypes = {
-  addContacts: PropTypes.func,
-}
-export default AddContact
+ContactForm.propTypes = {
+  addContacts: PropTypes.func.isRequired,
+};
+export default ContactForm;
